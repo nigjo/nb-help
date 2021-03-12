@@ -107,4 +107,5 @@
         <nbplatform.version>RELEASE110</nbplatform.version>
     </properties>
     <name>Simple NetBeans Help Displayer</name>
+    <description>Module to display the context help pages in the users local default web browser.</description>
 </project>
