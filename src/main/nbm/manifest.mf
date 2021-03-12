@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
 OpenIDE-Module-Localizing-Bundle: de/rwthaachen/wzl/gt/nbm/nbhelp/Bundle.properties
-
+OpenIDE-Module-Short-Description: Show help in the browser
+OpenIDE-Module-Display-Category: Help
