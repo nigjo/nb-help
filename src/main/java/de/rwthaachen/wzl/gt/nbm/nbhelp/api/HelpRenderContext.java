@@ -17,7 +17,10 @@ package de.rwthaachen.wzl.gt.nbm.nbhelp.api;
 
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
+
+import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpsetManager;
 
 /**
  * Accessor class for all data a renderer needs to render a page. An instance of this
@@ -45,10 +48,15 @@ public interface HelpRenderContext
 
   /**
    * Not implemented, yet.
-   * 
+   *
    * @return Always an empty list.
+   *
+   * @deprecated this should not be part of this API
    */
-  public List<HelpNavigationItem> getNavigationItems();
+  public default List<HelpNavigationItem> getNavigationItems()
+  {
+    return Collections.emptyList();
+  }
 
   /**
    * Not implemented, yet. Find another nbdocs: location for a given help ID.
@@ -56,7 +64,13 @@ public interface HelpRenderContext
    * @param helpId help ID to search.
    *
    * @return found location for the help ID or {@code null} if nothing matching is found.
+   *
+   * @deprecated Use HelpsetManager directly
    */
-  public URL findHelpId(String helpId);
+  public default URL findHelpId(String helpId)
+  {
+    return HelpsetManager.getManager().getHelpLocation(helpId);
+
+  }
 
 }

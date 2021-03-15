@@ -1,5 +1,7 @@
 package de.rwthaachen.wzl.gt.nbm.nbhelp;
 
+import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpsetManager;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
