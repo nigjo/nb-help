@@ -1,3 +1,5 @@
 # NetBeans Browser Help Displayer
 
-An attempt to replace the JavaHelp System in Apache NetBeans. This is a stand-alone module 
+An attempt to replace the JavaHelp System in Apache NetBeans.
+
+This is a stand-alone module in an early alpha state.
