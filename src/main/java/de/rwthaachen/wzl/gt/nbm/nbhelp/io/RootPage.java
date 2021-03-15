@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import org.openide.util.NbBundle;
 import org.openide.util.lookup.ServiceProvider;
 
-import de.rwthaachen.wzl.gt.nbm.nbhelp.HelpsetManager;
+import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpsetManager;
 import de.rwthaachen.wzl.gt.nbm.nbhelp.api.HelpContentHandler;
 import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpSet;
 

@@ -1,8 +1,21 @@
-package de.rwthaachen.wzl.gt.nbm.nbhelp;
+/*
+ * Copyright 2021 Jens Hofschröer.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package de.rwthaachen.wzl.gt.nbm.nbhelp.data;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
@@ -15,15 +28,6 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileRenameEvent;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
-import org.openide.xml.XMLUtil;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpSet;
-import de.rwthaachen.wzl.gt.nbm.nbhelp.data.View;
 
 /**
  * Eine neue Klasse von Jens Hofschröer. Erstellt Aug 24, 2020, 1:35:16 PM.
@@ -32,7 +36,7 @@ import de.rwthaachen.wzl.gt.nbm.nbhelp.data.View;
  *
  * @author Jens Hofschröer
  */
-public class HelpsetManager
+public final class HelpsetManager
 {
   private static final HelpsetManager manager = new HelpsetManager();
   private Set<HelpSet> hss;
@@ -148,19 +152,15 @@ public class HelpsetManager
         }
         for(FileObject helpsetFile : localeHelpsets)
         {
-          try(InputStream in = helpsetFile.getInputStream())
+          try
           {
-            Document helpset = XMLUtil.parse(
-                new InputSource(in), false, false, XMLUtil.defaultErrorHandler(),
-                (publicId, systemId) -> new InputSource(new StringReader("")));
-            Element result = helpset.getDocumentElement();
-            if("helpsetref".equals(result.getTagName()))
+            URL location = HelpSetUtilities.checkForHelpset(helpsetFile);
+            if(location != null)
             {
-              String location = result.getAttribute("url");
-              hss.add(new HelpSet(new URL(location)));
+              hss.add(new HelpSet(location));
             }
           }
-          catch(SAXException | IOException ex)
+          catch(IOException ex)
           {
             Logger.getLogger(HelpsetManager.class.getName())
                 .log(Level.WARNING, ex.toString(), ex);

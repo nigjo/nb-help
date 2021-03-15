@@ -25,20 +25,22 @@ import org.openide.util.lookup.Lookups;
 import de.rwthaachen.wzl.gt.nbm.nbhelp.api.HelpContentHandler;
 
 /**
- * Verwaltung für den eigentlichen Webserver für die Hilfeseiten. Alle Anfragen des
- * Browsers werden über die Methode {@link #handleRequest(ProxyServerRequest)}
- * abgewickelt. Der eigentliche {@linkplain ProxyServerProvider Server} muss über 
- * die Services registriert werden.
+ * Bridge between the JavaHelp system and the local webserver. All requests to the local
+ * webserver are handled by the method {@link #handleRequest(ProxyServerRequest)}.
+ * 
+ * The current webserver implementation is registered as a service to the
+ * {@link ProxyServerProvider} interface. A Java6+ Webserver is used by a default
+ * implementation.
  *
  * @author Jens Hofschröer
  */
-@NbBundle.Messages("de.rwthaachen.wzl.gt.nbm.helpserver.resources=nb-help")
+@NbBundle.Messages("de.rwthaachen.wzl.gt.nbm.nbhelp.resources=nb-help")
 public class HelpProxy implements Runnable
 {
   public static final String HANDLER_BASED_PROTOCOL = "nbhelpres";
   public static final String HELP_PAGE_PROTOCOL = "nbhelp";
   public static final String HELP_RESOURCES =
-      Bundle.de_rwthaachen_wzl_gt_nbm_helpserver_resources();
+      Bundle.de_rwthaachen_wzl_gt_nbm_nbhelp_resources();
 
   private static Map<String, URLStreamHandler> pathHandlers;
 
