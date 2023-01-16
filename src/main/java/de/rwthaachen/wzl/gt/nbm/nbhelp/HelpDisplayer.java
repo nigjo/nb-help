@@ -1,7 +1,5 @@
 package de.rwthaachen.wzl.gt.nbm.nbhelp;
 
-import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpsetManager;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,6 +21,8 @@ import org.openide.util.Lookup;
 import org.openide.util.RequestProcessor;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
+
+import de.rwthaachen.wzl.gt.nbm.nbhelp.data.HelpsetManager;
 
 /**
  * Schnittstelle der IDE-UI zur Hilfe. Diese Klasse ersetzt die bisherige "JavaHelp"
@@ -184,7 +184,7 @@ public class HelpDisplayer extends Help implements HelpCtx.Displayer
   @Override
   public boolean display(HelpCtx help)
   {
-    if(Boolean.TRUE == isValidID(help.getHelpID(), true))
+    if(Boolean.TRUE.equals(isValidID(help.getHelpID(), true)))
     {
       showHelp(help, false);
       return true;
